@@ -1,8 +1,8 @@
 # Star Wars Project
-This project involves pulling data on all available starships from the Star Wars API. The API provides information about various entities in the Star Wars universe, including starships and characters.
+This project involves pulling data on all available starships from the [Star Wars API](https://swapi.dev/). The API provides information about various entities in the Star Wars universe, including starships and characters.
 
 ## Data Source
-The data used in this project has been sourced from the Star Wars API. The API provides a RESTful interface to access a wealth of information about Star Wars, including details about starships and characters.
+The data used in this project has been sourced from the [Star Wars API](https://swapi.dev/). The API provides a RESTful interface to access a wealth of information about Star Wars, including details about starships and characters.
 
 ## Task Overview
 The primary task of this project is to pull data on all available starships from the API. The "pilots" key in the starships data contains URLs pointing to the characters who pilot the starship. 
