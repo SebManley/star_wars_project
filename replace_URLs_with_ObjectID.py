@@ -13,14 +13,13 @@ class replace_pilot_urls(Starship_Pilots):
         super().__init__()
 
     def replace_urls(self):
-        for starship in self.list:
-            pilot_urls = starship.get("pilots", [])
+
             pilot_objectids = []
-            for pilot_url in pilot_urls:
-                character = db.characters.find_one({"url": pilot_url})
+            for pilot in pilot_names:
+                character = db.characters.find_one({"name": pilot}, {"_id": 1})
                 if character:
                     pilot_objectids.append(character["_id"])
-            starship["pilots"] = pilot_objectids
-        return self.list
+
+
 
 
