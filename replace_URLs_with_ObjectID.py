@@ -1,13 +1,13 @@
 import requests
 import pymongo
-import starship_pilot
+import starship_pilots as sp
 
 
 client = pymongo.MongoClient()
 
 db = client['starwars']
 
-class replace_pilot_urls(Starship_Pilots):
+class ReplacePilotUrls(sp.Starship_Pilots):
 
     def __init__(self):
         super().__init__()
@@ -15,25 +15,29 @@ class replace_pilot_urls(Starship_Pilots):
     def pilot_ids(self):
         pilot_names = []
         for starships in self.list:
-            pilots = starships.values()
-            if len(starships[pilots]) >= 1:
-                driver_dict = {starships: []}
+            pilots = list(starships.values())[0]
+            if len(pilots) >= 1:
+                get_starship_name = list(starships.keys())
+                starship = get_starship_name[0]
+                driver_dict = {starship: []}
                 for pilot in pilots:
                     pilot_details = requests.get(pilot)
                     json_pilot_details = pilot_details.json()
-                    driver_dict[starships].append(json_pilot_details['name'])
+                    driver_dict[starship].append(json_pilot_details['name'])
                 pilot_names.append(driver_dict)
 
         pilot_objectids = []
-        for starship in pilot_names:
+        for starships in pilot_names:
+            get_starship_name = list(starships.keys())
+            starship = get_starship_name[0]
             pilot_ids_dict = {starship: []}
-            name_list = starship.values()
+            name_list = list(starships.values())[0]
             for name in name_list:
                 character = db.characters.find_one({"name": name}, {"_id": 1})
                 if character:
                     pilot_ids_dict[starship].append(character["_id"])
             pilot_objectids.append(pilot_ids_dict)
 
-
+        return pilot_objectids
 
 
