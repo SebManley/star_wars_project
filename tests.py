@@ -24,7 +24,7 @@ class TestSWAPICall(unittest.TestCase):
         mock_response.json.return_value = {'results': [{'name': 'Starship1'}, {'name': 'Starship2'}]}
         mock_get.return_value = mock_response
 
-        # Creating an instance of Starship_Pilots
+        # Creating an instance of StarWarsAPI
         star_wars_api = StarWarsAPI()
 
         # Calling the method we want to test
