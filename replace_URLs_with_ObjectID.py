@@ -40,4 +40,16 @@ class ReplacePilotUrls(sp.Starship_Pilots):
 
         return pilot_objectids
 
+    def replace_urls_with_objectids(self):
+        self.starship
+        pilot_object_ids = self.pilot_ids()
+        
+        for starships in pilot_object_ids:
+            get_starship_name = list(starships.keys())
+            starship = get_starship_name[0]
+            if starship ==
 
+
+pilot_replace = ReplacePilotUrls()
+
+pilot_replace.replace_urls_with_objectids()
