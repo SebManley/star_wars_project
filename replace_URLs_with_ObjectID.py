@@ -1,13 +1,15 @@
 import requests
 import pymongo
 import starship_pilots as sp
+import swapi_call as sw
 
 
 client = pymongo.MongoClient()
 
 db = client['starwars']
 
-class ReplacePilotUrls(sp.Starship_Pilots):
+
+class ReplacePilotUrls(sp.Starship_Pilots, sw.StarWarsAPI):
 
     def __init__(self):
         super().__init__()
@@ -41,15 +43,20 @@ class ReplacePilotUrls(sp.Starship_Pilots):
         return pilot_objectids
 
     def replace_urls_with_objectids(self):
-        self.starship
         pilot_object_ids = self.pilot_ids()
-        
-        for starships in pilot_object_ids:
-            get_starship_name = list(starships.keys())
-            starship = get_starship_name[0]
-            if starship ==
+        starships_data = self.get_starships_data()['results']
+        for i in range(len(starships_data)):
+            if len(starships_data[i]['pilots']) >= 1:
+                for pilot in starships_data[i]['pilots']:
+                    for ship_dict in pilot_object_ids:
+                        for each_ship in ship_dict:
+                            if starships_data[i]['name'] == each_ship:
+                                starships_data[i]['pilots'] = ship_dict[each_ship]
+
+        return starships_data
 
 
 pilot_replace = ReplacePilotUrls()
 
-pilot_replace.replace_urls_with_objectids()
+print(pilot_replace.pilot_ids())
+print(pilot_replace.replace_urls_with_objectids())
